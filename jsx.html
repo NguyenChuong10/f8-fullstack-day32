@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <style>
+               /* Base styles cho button và a */
+        button,
+        a {
+            background: #f5f5f5;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        button:hover,
+        a:hover {
+            opacity: 0.8;
+        }
+
+        .btn-primary {
+            background-color: #1e40af;
+            color: white;
+        }
+
+        button.btn-primary:hover,
+        a.btn-primary:hover {
+            background: #3b82f6;
+            opacity: 1;
+        }
+
+        /* Rounded variant */
+        .btn-rounded {
+            border-radius: 20px;
+        }
+
+        /* Bordered variant */
+        .btn-bordered {
+            background: transparent;
+            border: 2px solid #1e40af;
+            color: #1e40af;
+        }
+
+        button.btn-bordered:hover,
+        a.btn-bordered:hover {
+            background: #effff5;
+            opacity: 1;
+        }
+
+        /* Size variants */
+        .size-s {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        .size-m {
+            padding: 10px 16px;
+            font-size: 14px;
+        }
+
+        .size-l {
+            padding: 14px 24px;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            padding: 40px;
+        }
+
+        #root {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root"> </div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        function Button({ primary = false, rounded = false, bordered = false, href = null, size = "m", children, ...props }) {
+            const classNames = ["btn"];
+
+            if (primary) classNames.push("btn-primary");
+            if (rounded) classNames.push("btn-rounded");
+            if (bordered) classNames.push("btn-bordered");
+            classNames.push(`size-${size}`);
+
+            if (href) {
+                return (
+                    <a href={href} className={classNames.join(" ")} {...props} >{children}</a>
+                );
+            }
+
+            return (
+                <button className={classNames.join(" ")} {...props}>{children}</button>
+            );
+
+        }
+
+        const wrapper = (
+            <div>
+                <Button normal type="button">Button Normal</Button>
+                <Button primary type="submit" rounded bordered >Button primary</Button>
+                <Button rounded > Button Rounded</Button>
+                <Button bordered> Button Bordered</Button>
+                <Button href="https://google.com" target="_blank" primary >google.com</Button>
+            </div>
+        )
+
+        const root = ReactDOM.createRoot(document.querySelector("#root"));
+        root.render(wrapper);
+    </script>
+</body>
+
+</html>

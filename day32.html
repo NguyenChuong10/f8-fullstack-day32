@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .btn{
+            background:#ccc;
+            padding : 4px 10px;
+            border : none;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        const heading = "Todolist";
+        const tasks = [
+            {
+                id: 1,
+                title: "Item 1"
+            },
+            {
+                id: 2,
+                title: "Item 2"
+            },
+            {
+                id: 3,
+                title: "Item 3"
+            }
+        ];
+       
+        //component heading
+        const Heading = ({ type : Tag = "h1" , title}) => {
+            console.log(title);
+            return <Tag>{title}</Tag>
+        };
+
+        function Button({children}) {
+            return <button className = "btn" >{children}</button>
+        }
+
+        const items = [<h2 key={0}> Heading 2.2 </h2>];
+        items.push(<h2 key={1} > heading 2.2 </h2>);
+
+        const wrapper = (
+            <div>
+                <Heading title = "Hello world" />
+                <Heading type = "h2" title = "Hello world" />
+                <Heading type = "h3" title = "Hello world" />
+
+                <button>click me 1</button>
+                <button>click me 2</button>
+                <button>click me 3</button>
+
+                <h1>{heading}</h1>
+                <ul className="tasks-list">
+                    {tasks.map((task, index) => (
+                        <li key={index} className="task-item" title={task.title}>
+                            <a href={`/tasks/${task.id}`} className="task-link">{task.title}</a>
+                        </li>
+                    ))}
+                </ul>
+            </div>
+
+        );
+
+        
+            
+
+        console.log(wrapper);
+        const root = ReactDOM.createRoot(document.querySelector("#root"));
+        root.render(wrapper);
+        
+    </script>
+</body>
+
+</html>
