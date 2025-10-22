@@ -58,9 +58,8 @@
             { id: 5, title: "Deploy ứng dụng lên Vercel", isCompleted: false }
         ];
 
+        const taskList = (
 
-        function TaskList() {
-            return (
                 <div className="container">
                     <h1>Danh Sách Công Việc</h1>
                     <ul>
@@ -75,10 +74,10 @@
                     </ul>
                 </div>
             );
-        }
+            
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<TaskList />);
+        root.render(taskList);
     </script>
 </body>
 </html>
